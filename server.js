@@ -24,7 +24,7 @@ connectToMongoDB();
 app.use(cookieSession({
     name: 'user',
     keys: ['username', 'password'],
-    maxAge: 24 * 60 * 60 * 1000
+    maxAge: 24 * 60 * 60 * 1000 //24 hours
 }));
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -59,7 +59,6 @@ app.post('/login', async (req, res) => {
             res.sendFile(path.join(__dirname, 'public', 'home.html'));
         }
     } catch (err) {
-        console.error("Error during login:", err);
         res.status(500).send("Internal Server Error");
     }
 });
@@ -85,17 +84,13 @@ app.post('/signup', async (req, res) => {
             res.redirect('/'); 
         }
     } catch (err) {
-        console.error("Error during signup:", err);
+      //  console.error("Error during signup:", err);
         res.status(500).send("Internal Server Error");
     }
 });
 
 app.get("/tasks", async (req, res) => {
     const username = req.session.username;
-
-    if (!username) {
-        return res.status(401).json({ message: 'User not logged in. Cannot retrieve tasks.' });
-    }
 
     try {
         const database = client.db('users');
@@ -104,7 +99,6 @@ app.get("/tasks", async (req, res) => {
 
         res.status(200).json(tasks);
     } catch (err) {
-        console.error("Unable to retrieve tasks:", err);
         res.status(500).send("Internal Server Error");
     }
 });
@@ -114,17 +108,11 @@ app.post("/addTask", async (req, res) => {
     const { task } = req.body;
     const username = req.session.username;
 
-    if (!username) {
-        return res.status(401).json({ message: 'User not logged in. Cannot add task.' });
-    }
     try {
         const database = client.db('users');
         const tasksCollection = database.collection('tasks');
         const result = await tasksCollection.insertOne({ username: username, task: task });
-        console.log("Insert result:", result);
-        res.status(200).json({ message: 'Task added successfully', taskId: result.insertedId });
     } catch (err) {
-        console.error("Error adding task:", err.message, err.stack); 
         res.status(500).send("Internal Server Error");
     }
 });
@@ -134,17 +122,12 @@ app.post('/deleteTask', async (req, res) => {
     const { taskId } = req.body;
     const username = req.session.username;
 
-    if (!username || !taskId) {
-        return res.status(400).send('Missing task ID or user not logged in');
-    }
     try {
         const database = client.db('users');
         const tasksCollection = database.collection('tasks');
         await tasksCollection.deleteOne({ _id: new ObjectId(taskId), username });
-        res.status(200).send('Task deleted successfully');
 
     } catch (err) {
-        console.error("Error deleting task:", err);
         res.status(500).send("Internal Server Error");
     }
 });

@@ -2,20 +2,20 @@ const button = document.getElementById("input-button");
 const inputBox = document.getElementById("input-box");
 const listContainer = document.getElementById("list-container");
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function() { //Load the tasks when the page loads
     fetchTasks();  
 });
 
-function fetchTasks() {
+function fetchTasks() { //Get the tasks from the db according to who the user is
     fetch('/tasks')
     .then(response => response.json())
     .then(tasks => {
-        console.log("Retrieved tasks:", tasks);
+        console.log("Fetched tasks:", tasks);
         renderTasks(tasks);  
     });
 }
 
-function renderTasks(tasks) {
+function renderTasks(tasks) { //Need to display all of the tasks when the page loads
     tasks.forEach(task => {
         const li = document.createElement("li");
         li.dataset.id = task._id;  
@@ -49,7 +49,7 @@ function renderTasks(tasks) {
             const confirmPrompt = confirm("Are you sure you want to delete this task?");
             if (confirmPrompt) {
                 li.remove();
-                deleteTask(task._id);  // Call the deleteTask function to remove from the database
+                deleteTask(task._id); 
             }
         });
     });
