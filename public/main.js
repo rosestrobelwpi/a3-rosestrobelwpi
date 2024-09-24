@@ -20,8 +20,10 @@ function renderTasks(tasks) { //Need to display all of the tasks when the page l
         const li = document.createElement("li");
         li.dataset.id = task._id;  
         li.innerHTML = `
-        <label><input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''}></label>
+        <label>
+            <input type="checkbox" class="checkbox" ${task.completed ? 'checked' : ''}>
             <span class="taskSpan" style="text-decoration: ${task.completed ? 'line-through' : 'none'};">${task.task}</span>
+        </label>
             <div class="button-container">
                 <span class="editButton">edit</span>
                 <span class="deleteButton">delete</span>

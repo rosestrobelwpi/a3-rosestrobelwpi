@@ -6,38 +6,6 @@ Rose Strobel
 
 ---
 
-HTML:  
-- HTML input tags and form fields of various flavors (`<textarea>`, `<input>`, checkboxes, radio buttons etc.)
-- HTML that can display all data *for a particular authenticated user*. Note that this is different from the last assignnment, which required the display of all data in memory on the server.
-
-Note that it might make sense to have two pages for this assignment, one that handles login / authentication, and one that contains the rest of your application.
-For example, when visiting the home page for the assignment, users could be presented with a login form. After submitting the login form, if the login is 
-successful, they are taken to the main application. If they fail, they are sent back to the login to try again. For this assignment, it is acceptable to simply create 
-new user accounts upon login if none exist, however, you must alert your users to this fact.  
-
-CSS:  
-- CSS styling should primarily be provided by your chosen template/framework. 
-Oftentimes a great deal of care has been put into designing CSS templates; 
-don't override their stylesheets unless you are extremely confident in your graphic design capabilities. 
-The idea is to use CSS templates that give you a professional looking design aesthetic without requiring you to be a graphic designer yourself.
-
-JavaScript:  
-- At minimum, a small amount of front-end JavaScript to get / fetch data from the server. 
-See the [previous assignment](https://github.com/cs-4241-23/shortstack) for reference.
-
-Node.js:  
-- A server using Express and a persistent database (mongodb).
-
-General:  
-- Your site should achieve at least 90% on the `Performance`, `Best Practices`, `Accessibility`, and `SEO` tests 
-using Google [Lighthouse](https://developers.google.com/web/tools/lighthouse) (don't worry about the PWA test, and don't worry about scores for mobile devices).
-Test early and often so that fixing problems doesn't lead to suffering at the end of the assignment. 
-
-Deliverables
----
-
-Do the following to complete this assignment:
-
 1. Implement your project with the above requirements. I'd begin by converting your A2 assignment. First, change the server to use express. Then, modify the server to use mongodb instead of storing data locally. Last but not least, implement user accounts and login. User accounts and login is often the hardest part of this assignment, so budget your time accordingly.
 2. If you developed your project locally, deploy your project to Glitch (unless completing the alternative server technical acheivement described below), and fill in the appropriate fields in your package.json file.
 3. Test your project to make sure that when someone goes to your main page on Glitch (or an alternative server), it displays correctly.
@@ -48,7 +16,8 @@ Do the following to complete this assignment:
 ---
 *Technical*
 
-I received a 100 in all 4 categories on lighthouse for the login, but I recieved all 100's for the to-do page except for accessibility. It is saying that because input.checkbox does not have a label, it cannot rate it a 100, which I don't understand because I put a label on the checkboxes in my main.js code.
+I received a 100 in all 4 categories on lighthouse for the login.
+I also implemented github's OAuth in my login screen
 
 *Design/UX*
 
@@ -91,9 +60,11 @@ My achievements are worth however you see fit
 ## Technical Achievements
 - **Tech Achievement 1**: I used a lot of middleware, including express.urlencoded, express.json, cookieSession, and express.static.
 
-**Tech Achievement 2**I received a 100 in all 4 categories on lighthouse for the login, but I recieved all 100's for the to-do page except for accessibility. It is saying that because input.checkbox does not have a label, it cannot rate it a 100, which I don't understand because I put a label on the checkboxes in my main.js code.
+**Tech Achievement 2**I received a 100 in all 4 categories on lighthouse
 
 **Tech Achievement 3** I used MongoDB to save user data
+
+**Tech Achievement 4** I used github's authentication service as an alternative for user's to log in
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: I followed the following tips from the W3C Web Accessibility Initiative

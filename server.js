@@ -1,11 +1,65 @@
 const express = require("express");
-const cookieSession = require("cookie-session");
+const session = require("express-session");
+//const cookieSession = require("cookie-session");
 const path = require("path");
 const { MongoClient, ObjectId } = require('mongodb');
+const passport = require("passport");
+var GitHubStrategy = require('passport-github2').Strategy;
+
+var GITHUB_CLIENT_ID = "Ov23lixqJCtbldxE6lcQ";
+var GITHUB_CLIENT_SECRET = "185607978dc91566e933610c21fa7acead2ee569";
 
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+
+app.use(session({
+    secret: 'secret', 
+    resave: false,  
+    saveUninitialized: true, 
+    cookie: { secure: false }
+}))
+
+passport.serializeUser(function(user, done) {
+    done(null, user);
+  });
+
+passport.deserializeUser(function(obj, done) {
+done(null, obj);
+});
+
+passport.use(new GitHubStrategy({
+    clientID: GITHUB_CLIENT_ID,
+    clientSecret: GITHUB_CLIENT_SECRET,
+    callbackURL: "http://localhost:3000/auth/github/callback"
+  },
+   async function (accessToken, refreshToken, profile, done) {
+    
+    try {
+        const database = client.db('users'); 
+        const usersCollection = database.collection('usernames and passwords'); 
+
+        let user = await usersCollection.findOne({ githubId: profile.id });
+        if (!user) {
+            const newUser = {
+                githubId: profile.id,
+                username: profile.username,
+              };
+            await usersCollection.insertOne(newUser);
+              user = newUser;
+        }
+        console.log("GitHub User logged in successfully:", user);
+        return done(null, user);
+        
+    }
+    catch (err) {
+        console.error("Error with GitHub login:", err);
+      return done(err, null);
+    }
+  }
+));
+
 
 const uri = `mongodb+srv://rosestrobel:uyrwe45@a3.5wbb0.mongodb.net/?retryWrites=true&w=majority&appName=a3`;
 const client = new MongoClient(uri);
@@ -21,17 +75,27 @@ async function connectToMongoDB() {
 
 connectToMongoDB();
 
-app.use(cookieSession({
-    name: 'user',
-    keys: ['username', 'password'],
-    maxAge: 24 * 60 * 60 * 1000 //24 hours
-}));
+// app.use(cookieSession({
+//     name: 'user',
+//     keys: ['username', 'password'],
+//     maxAge: 24 * 60 * 60 * 1000 //24 hours
+// }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.get("/", (req, res) => {
     res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
+
+app.get('/auth/github',
+  passport.authenticate('github', { scope: [ 'user:email' ] }));
+
+app.get('/auth/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
 
 app.post('/login', async (req, res) => {
     console.log('Login attempt:', req.body);

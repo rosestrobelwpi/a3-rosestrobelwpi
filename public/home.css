@@ -37,3 +37,15 @@ input {
     text-align: center;
     flex-direction: column;
 }
+
+a.github-login {
+    margin-top: 15px;
+    text-decoration: none;
+    color: #E9EFEC;
+    opacity: 0.8;
+}
+
+a.github-login:hover {
+    opacity: 0.6;
+    text-decoration: underline;
+}
