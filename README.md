@@ -5,15 +5,6 @@ Due: September 19th, by 11:59 AM.
 Rose Strobel
 
 ---
-
-1. Implement your project with the above requirements. I'd begin by converting your A2 assignment. First, change the server to use express. Then, modify the server to use mongodb instead of storing data locally. Last but not least, implement user accounts and login. User accounts and login is often the hardest part of this assignment, so budget your time accordingly.
-2. If you developed your project locally, deploy your project to Glitch (unless completing the alternative server technical acheivement described below), and fill in the appropriate fields in your package.json file.
-3. Test your project to make sure that when someone goes to your main page on Glitch (or an alternative server), it displays correctly.
-4. Ensure that your project has the proper naming scheme `a3-yourfirstname-yourlastname` so we can find it.
-5. Fork this repository and modify the README to the specifications below.
-6. Create and submit a Pull Request to the original repo. Name the pull request using the following template: `a3-firstname-lastname`.
-
----
 *Technical*
 
 I received a 100 in all 4 categories on lighthouse for the login.
@@ -29,7 +20,7 @@ I also implemented github's OAuth in my login screen
 6) I reflected the reading order in the code order. My code goes from top to bottom how you would see the website. For example, I have the header first, then the paragraph, then the text inputs and submit button, then the lists.
 7) I ensured that interactive elements are easy to identify. I made sure that the user's cursor turns into a pointer when hovering over interactive elements. I also made these elements less bold than the other text on the page and made their opacity slightly less when hovering over them.
 8) I provided clear and consistent navigation options. The navigation accross the webpage includes clear and consistent navigation by using clear headings and displaying informative content on the page.
-9) I ensured that forms have clear and descriptive labels. Each label for the forms have very descriptive labels so that the user is not confused. If they are trying to create a new task, there is a label to add the task. If they want to sign in or sign up, there is a label to notify the user what they are doing.
+9) I used markups, or divs, to create a sense of meaning and structure. The divs divide each section by their content.
 10) I used headings and spacing to group related content. I used whitespace to make different content more apparent. There is sufficient white space between the heading and paragraphs, as well as the list of tasks. I also used a hr line to make it more apparent.
 11) I identified the main language used on the webpage. In the meta tag, <html lang="en">, I said that the language of the website is english.
 12) I did not use color to convey information. I did not use color, but rather prompts to display information. If the user did not input a value in to the task textbox, a prompt would show notifying them to input a value before submitting. If the user wanted to delete a task, I would prompt them making sure that they want to delete their task.
@@ -47,7 +38,7 @@ Proximity:  Regarding proximity, I grouped all related elements together code wi
 
 ## Your Web Application Title
 
-your glitch (or alternative server) link e.g. http://a3-charlie-roberts.glitch.me
+your glitch (or alternative server) link e.g. https://a3-rose-strobel.glitch.me
 
 My project is a to-do list. The user will sign in or sign up. If the user signs up, their username and password will be sent to
 my MongoDB database. They will now be able to sign in with their given username and password. Cookies allows my website to store their username and password for 24 hours, which makes logging in easier. If the user enters the wrong password or they don't have an account, it will send a log to the console. Once the user logs in and loads into the to-do list webpage, they are able to create tasks. These tasks are edittable and deletable. Users can also check off their task if it is completed. Adding and deleting tasks are also sent to my MongoDB database in the "tasks" section. It stores the user's username and the task they added, so that when that user logs in, their tasks will be stored. Some challenges were making the server work, as well as displaying the task data. It was difficult debugging my code figuring out why I would be getting error codes.
@@ -58,7 +49,7 @@ The CSS framework I used was bootstrap. I mainly relied on bootstrap for its tex
 My achievements are worth however you see fit
 
 ## Technical Achievements
-- **Tech Achievement 1**: I used a lot of middleware, including express.urlencoded, express.json, cookieSession, and express.static.
+- **Tech Achievement 1**: The middleware I used were express.json(), express.urlencoded, passport.initialize, passport.session, express.static, and passport.authenticate
 
 **Tech Achievement 2**I received a 100 in all 4 categories on lighthouse
 
