@@ -61,7 +61,7 @@ passport.use(new GitHubStrategy({
 ));
 
 
-const uri = `mongodb+srv://rosestrobel:uyrwe45@a3.5wbb0.mongodb.net/?retryWrites=true&w=majority&appName=a3`;
+const uri = `mongodb+srv://rosestrobel:uyrwe45@a3.5wbb0.mongodb.net/?retryWrites=true&w=majority&appName=a3?ssl=true`;
 const client = new MongoClient(uri);
 
 async function connectToMongoDB() {
