@@ -51,11 +51,11 @@ My achievements are worth however you see fit
 ## Technical Achievements
 - **Tech Achievement 1**: The middleware I used were express.json(), express.urlencoded, passport.initialize, passport.session, express.static, and passport.authenticate
 
-**Tech Achievement 2**I received a 100 in all 4 categories on lighthouse
+**Tech Achievement 2**: I received a 100 in all 4 categories on lighthouse
 
-**Tech Achievement 3** I used MongoDB to save user data
+**Tech Achievement 3**: I used MongoDB to save user data
 
-**Tech Achievement 4** I used github's authentication service as an alternative for user's to log in
+**Tech Achievement 4**: I used github's authentication service as an alternative for user's to log in
 
 ### Design/Evaluation Achievements
 - **Design Achievement 1**: I followed the following tips from the W3C Web Accessibility Initiative
